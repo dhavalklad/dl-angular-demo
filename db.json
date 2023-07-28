@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Dhaval",
+      "lastName": "Lad",
+      "email": "dhavalklad@gmail.com",
+      "password": "admin",
+      "phone": "9053470305",
+      "city": "St Catharines",
+      "about": "test",
+      "gender": "male"
+    },
+    {
+      "firstName": "fasuy",
+      "lastName": "uiysfu",
+      "email": "uisf@jh",
+      "password": "12345",
+      "phone": "j23894",
+      "city": "St Catharine's",
+      "about": null,
+      "gender": "male",
+      "id": 2
+    }
+  ]
+}

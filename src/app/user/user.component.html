@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('fName')?.touched && !signupForm.get('fName')?.valid}">
+        <label class="control-label" for="firstName">First Name</label>
+        <input type="text" formControlName="fName" id="firstName" class="form-control">
+        <span class="help-block"
+              *ngIf="signupForm.get('fName')?.touched && !signupForm.get('fName')?.valid && signupForm.get('fName')?.errors?.['required']">First Name is required</span>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('lName')?.touched && !signupForm.get('lName')?.valid}">
+        <label class="control-label" for="lastName">Last Name</label>
+        <input type="text" formControlName="lName" id="lastName" class="form-control">
+        <span class="help-block"
+              *ngIf="signupForm.get('lName')?.touched && !signupForm.get('lName')?.valid && signupForm.get('lName')?.errors?.['required']">Last Name is required</span>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('email')?.touched && !signupForm.get('email')?.valid}">
+        <label class="control-label" for="email">Email</label>
+        <input type="text" formControlName="email" id="email" class="form-control">
+        <span class="help-block"
+              *ngIf="signupForm.get('email')?.touched && !signupForm.get('email')?.valid && signupForm.get('email')?.errors?.['required']"
+        >Email is required</span>
+        <span class="help-block"
+              *ngIf="signupForm.get('email')?.touched && !signupForm.get('email')?.valid && signupForm.get('email')?.errors?.['email']"
+        >Email address is invalid</span>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('phone')?.touched && !signupForm.get('phone')?.valid}">
+        <label class="control-label" for="phone">Phone</label>
+        <input type="tel" formControlName="phone" id="phone" class="form-control">
+        <span class="help-block"
+              *ngIf="signupForm.get('phone')?.touched && !signupForm.get('phone')?.valid && signupForm.get('phone')?.errors?.['required']">Phone number is required</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('password')?.touched && !signupForm.get('password')?.valid}">
+        <label class="control-label" for="password">Password</label>
+        <input type="password" formControlName="password" id="password" class="form-control">
+        <span class="help-block"
+              *ngIf="signupForm.get('password')?.touched && !signupForm.get('password')?.valid && signupForm.get('password')?.errors?.['required']">Password is required</span>
+        <span class="help-block"
+              *ngIf="signupForm.get('password')?.touched && !signupForm.get('password')?.valid && signupForm.get('password')?.errors?.['minlength']">Password length should be at least 5 character</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': (signupForm.get('confirmPassword')?.touched && !signupForm.get('confirmPassword')?.valid) || (signupForm.touched && !signupForm.valid && signupForm.errors?.['notMatched'])}">
+        <label class="control-label" for="confirmPassword">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" >
+        <span class="help-block"
+              *ngIf="signupForm.get('confirmPassword')?.touched && !signupForm.get('confirmPassword')?.valid && signupForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
+        <span class="help-block"
+              *ngIf="signupForm.touched && !signupForm.valid && signupForm?.errors?.['notMatched'] && signupForm.get('confirmPassword')?.value">Confirm password should match the password</span>
+      </div>
+
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('gender')?.touched && !signupForm.get('gender')?.valid}">
+        <label class="control-label">Gender</label>
+        <label class="radio-inline" *ngFor="let gender of genders; let i=index;">
+          <input type="radio" formControlName="gender" value="{{gender}}">{{ gender }}</label>
+        <span class="help-block"
+              *ngIf="signupForm.get('gender')?.touched && !signupForm.get('gender')?.valid && signupForm.get('gender')?.errors?.['required']">Gender is required</span>
+      </div>
+
+      <!--      <div class="form-group">-->
+      <!--        <label class="checkbox-inline" *ngFor="let hobby of hobbies; let i=index;" for="checkHobby{{i}}">-->
+      <!--          <input ngModel type="checkbox" [name]="hobby.label" id="checkHobby{{i}}">-->
+      <!--          {{hobby.label}}-->
+      <!--        </label>-->
+      <!--      </div>-->
+
+      <div class="form-group"
+           [ngClass]="{'has-error': signupForm.get('city')?.touched && !signupForm.get('city')?.valid}">
+        <label class="control-label" for="city">City</label>
+        <select id="city" class="form-control" formControlName="city">
+<!--          <option value="">&#45;&#45; Select &#45;&#45;</option>-->
+          <option *ngFor="let city of cities; let i=index;" value="{{city}}">{{city}}</option>
+        </select>
+        <span class="help-block"
+              *ngIf="signupForm.get('city')?.touched && !signupForm.get('city')?.valid && signupForm.get('city')?.errors?.['required']">City is required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="about">About</label>
+        <textarea id="about" class="form-control" formControlName="about"></textarea>
+      </div>
+      <div class="form-group">
+        <p>
+          <button class="btn btn-primary mr-1" type="submit" [disabled]="!signupForm.valid">
+            Submit
+          </button>
+<!--          <span>{{signupForm.valid ? 'valid' : 'not valid'}}</span>-->
+
+          <button class="btn btn-default" type="button">Reset</button>
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
