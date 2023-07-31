@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm, RequiredValidator, ValidationErrors, Validators} from "@angular/forms";
-import {User} from "../user";
-import {confirmPasswordValidator} from "../shared/confirm-password.directive";
-import {UsersService} from "../shared/users.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {User} from "../shared/models/user";
+import {confirmPasswordValidator} from "../shared/directives/confirm-password.directive";
+import {UsersService} from "../shared/services/api/users.service";
 
 @Component({
   selector: 'app-user',
@@ -35,12 +35,9 @@ export class UserComponent implements OnInit {
       gender: new FormControl(null, [Validators.required]),
     }, {validators: confirmPasswordValidator});
 
-    console.log('signup form is: ', this.signupForm);
   }
 
   onSubmit() {
-    // console.log(this.signupForm.value);
-    // return;
     this.makeAPICall(this.mapUser(this.signupForm.value));
   }
 
@@ -54,7 +51,7 @@ export class UserComponent implements OnInit {
     city: string,
     about: string,
     gender: string
-  }) {
+  }): User {
     // destructuring
     // const {
     //   firstName,
@@ -67,7 +64,7 @@ export class UserComponent implements OnInit {
     //   gender
     // } = form.value;
 
-    const user: User = {
+    return {
       firstName: form.fName,
       lastName: form.lName,
       email: form.email,
@@ -77,7 +74,6 @@ export class UserComponent implements OnInit {
       about: form.about,
       gender: form.gender
     };
-    return user;
   }
 
   makeAPICall(user: User) {
@@ -85,7 +81,6 @@ export class UserComponent implements OnInit {
       console.log('user added successfully', user);
       this.resetForm();
     });
-    // console.log('user', user);
   }
 
   resetForm(): void {

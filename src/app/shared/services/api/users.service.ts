@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {User} from "../user";
-import {BaseApiService} from "./services/api/base-api.service";
+import {User} from "../../models/user";
+import {BaseApiService} from "./base-api.service";
 import {catchError, Observable, ObservableInput, throwError} from "rxjs";
 
 @Injectable({
@@ -28,14 +28,18 @@ export class UsersService extends BaseApiService {
   }
 
   updateUser(user: User) {
+    return this.http.put<User>(this.baseURL + 'users/' + user.id, user);
   }
 
   deleteUser(id: number) {
+    return this.http.delete(this.baseURL + 'users/' + id);
   }
 
-  getUser(id: number) {
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(this.baseURL + 'users/' + id);
   }
 
-  getUsers() {
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseURL + 'users');
   }
 }
