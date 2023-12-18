@@ -5,22 +5,44 @@
       "firstName": "Dhaval",
       "lastName": "Lad",
       "email": "dhavalklad@gmail.com",
-      "password": "admin",
+      "password": "12345",
       "phone": "9053470305",
-      "city": "St Catharines",
+      "city": "St Catharine's",
       "about": "test",
       "gender": "male"
     },
     {
-      "firstName": "fasuy",
-      "lastName": "uiysfu",
-      "email": "uisf@jh",
+      "id": 2,
+      "firstName": "fasuy-1",
+      "lastName": "uiysfu-1",
+      "email": "uisf-1@jh",
       "password": "12345",
-      "phone": "j23894",
-      "city": "St Catharine's",
-      "about": null,
-      "gender": "male",
-      "id": 2
+      "phone": "j23894-1",
+      "city": "Welland",
+      "about": "test\nedit mode testing.",
+      "gender": "female"
+    },
+    {
+      "firstName": "Andrew",
+      "lastName": "Rees",
+      "email": "andrew@gmail.com",
+      "password": "12345",
+      "phone": "27432748293",
+      "city": "Hamilton",
+      "about": "this something about Andrew.",
+      "gender": "other",
+      "id": 3
+    },
+    {
+      "firstName": "Carol",
+      "lastName": "Test",
+      "email": "carol@email.com",
+      "password": "12345",
+      "phone": "84728758",
+      "city": "Hamilton",
+      "about": "This is something about carol",
+      "gender": "female",
+      "id": 4
     }
   ]
 }

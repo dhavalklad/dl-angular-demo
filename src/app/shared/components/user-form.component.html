@@ -48,7 +48,7 @@
       <div class="form-group"
            [ngClass]="{'has-error': (signupForm.get('confirmPassword')?.touched && !signupForm.get('confirmPassword')?.valid) || (signupForm.touched && !signupForm.valid && signupForm.errors?.['notMatched'])}">
         <label class="control-label" for="confirmPassword">Confirm Password</label>
-        <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" >
+        <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control">
         <span class="help-block"
               *ngIf="signupForm.get('confirmPassword')?.touched && !signupForm.get('confirmPassword')?.valid && signupForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
         <span class="help-block"
@@ -75,7 +75,7 @@
            [ngClass]="{'has-error': signupForm.get('city')?.touched && !signupForm.get('city')?.valid}">
         <label class="control-label" for="city">City</label>
         <select id="city" class="form-control" formControlName="city">
-<!--          <option value="">&#45;&#45; Select &#45;&#45;</option>-->
+          <!--          <option value="">&#45;&#45; Select &#45;&#45;</option>-->
           <option *ngFor="let city of cities; let i=index;" value="{{city}}">{{city}}</option>
         </select>
         <span class="help-block"
@@ -91,9 +91,9 @@
           <button class="btn btn-primary mr-1" type="submit" [disabled]="!signupForm.valid">
             Submit
           </button>
-<!--          <span>{{signupForm.valid ? 'valid' : 'not valid'}}</span>-->
+          <!--          <span>{{signupForm.valid ? 'valid' : 'not valid'}}</span>-->
 
-          <button class="btn btn-default" type="button">Reset</button>
+          <button class="btn btn-default" type="button" (click)="onReset()">Reset</button>
         </p>
       </div>
 

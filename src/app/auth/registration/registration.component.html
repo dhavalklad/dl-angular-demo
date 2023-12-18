@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group"
+           [ngClass]="{'has-error': registrationForm.get('fName')?.touched && !registrationForm.get('fName')?.valid}">
+        <label class="control-label" for="fName">First Name</label>
+        <input type="text" id="fName" formControlName="fName" class="form-control">
+        <span class="help-block"
+              *ngIf="registrationForm.get('fName')?.touched && !registrationForm.get('fName')?.valid && registrationForm.get('fName')?.errors?.['required']">First Name is required.</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': registrationForm.get('lName')?.touched && !registrationForm.get('lName')?.valid}">
+        <label class="control-label" for="lName">Last Name</label>
+        <input type="text" id="lName" formControlName="lName" class="form-control">
+        <span class="help-block"
+              *ngIf="registrationForm.get('lName')?.touched && !registrationForm.get('lName')?.valid && registrationForm.get('lName')?.errors?.['required']">Last Name is required.</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': registrationForm.get('email')?.touched && !registrationForm.get('email')?.valid}">
+        <label class="control-label" for="email">E-mail</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+        <span class="help-block"
+              *ngIf="registrationForm.get('email')?.touched && !registrationForm.get('email')?.valid && registrationForm.get('email')?.errors?.['required']">Email is required.</span>
+           <span class="help-block"
+                 *ngIf="registrationForm.get('email')?.touched && !registrationForm.get('email')?.valid && registrationForm.get('email')?.errors?.['email']">Email is invalid.</span>
+        <span class="help-block"
+                 *ngIf="registrationForm.get('email')?.touched && !registrationForm.get('email')?.valid && registrationForm.get('email')?.errors?.['isEmailExist']">Email already exist.</span>
+      </div>
+      <span class="help-block" *ngIf="registrationForm.get('email')?.pending">Validating Email address...
+<!--        <app-spinner></app-spinner>-->
+      </span>
+      <div class="form-group"
+           [ngClass]="{'has-error': registrationForm.get('password')?.touched && !registrationForm.get('password')?.valid}">
+        <label class="control-label" for="password">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+        <span class="help-block"
+              *ngIf="registrationForm.get('password')?.touched && !registrationForm.get('password')?.valid && registrationForm.get('password')?.errors?.['required']">Password is required</span>
+        <span class="help-block"
+              *ngIf="registrationForm.get('password')?.touched && !registrationForm.get('password')?.valid && registrationForm.get('password')?.errors?.['minlength']">Password length should be at least 5 character</span>
+      </div>
+      <div class="form-group"
+           [ngClass]="{'has-error': (registrationForm.get('confirmPassword')?.touched && !registrationForm.get('confirmPassword')?.valid) || (registrationForm.touched && !registrationForm.valid && registrationForm.errors?.['notMatched'])}">
+        <label class="control-label" for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+        <span class="help-block"
+              *ngIf="registrationForm.get('confirmPassword')?.touched && !registrationForm.get('confirmPassword')?.valid && registrationForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
+        <span class="help-block"
+              *ngIf="registrationForm.touched && !registrationForm.valid && registrationForm?.errors?.['notMatched'] && registrationForm.get('confirmPassword')?.value">Confirm password should match the password</span>
+      </div>
+      <div class="form-group" *ngIf="!showSpinner">
+        <button class="btn btn-primary" type="submit"
+                [disabled]="!registrationForm.valid">Register
+        </button>
+        |
+        <button class="btn btn-default" type="button">Reset</button>
+      </div>
+      <div class="form-group" *ngIf="showSpinner">
+        <span> Please wait..
+<!--          <app-spinner></app-spinner>-->
+        </span>
+      </div>
+      <p *ngIf="!showSpinner">Already have an Account? click <a class="btn btn-primary" role="button" [routerLink]="['/auth']">Login</a></p>
+    </form>
+  </div>
+</div>

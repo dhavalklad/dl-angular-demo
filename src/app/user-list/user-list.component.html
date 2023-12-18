@@ -1,1 +1,33 @@
-<p>user-list works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>City</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.city}}</td>
+        <td>
+          <a role="button" class="btn btn-primary mr-1" [routerLink]="['/users/',user.id ]">Edit</a>
+          <a role="button" class="btn btn-danger" [routerLink]="['/users/',user.id ]">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
